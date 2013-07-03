@@ -28,7 +28,12 @@ describe('annotate', function () {
           $routeProvider.when('path', {
             controller: function ($scope) {
               $scope.works = true;
-            }
+            },
+            resolve: {
+              someVar: function ($scope) {
+                  $scope.works = true;
+              }
+            },
           });
         });
     });
@@ -39,7 +44,12 @@ describe('annotate', function () {
           $routeProvider.when('path', {
             controller: ['$scope', function ($scope) {
               $scope.works = true;
-            }]
+            }],
+            resolve: {
+              someVar: ['$scope', function ($scope) {
+                  $scope.works = true;
+              }]
+            },
           });
         }]);
     }));
